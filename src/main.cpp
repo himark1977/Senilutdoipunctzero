@@ -44,6 +44,25 @@ void loop() {
   
 }
 
+bool Motor(bool high){
+  pinMode(in1Pin, OUTPUT);
+  pinMode(in2Pin, OUTPUT);
+  pinMode(in3Pin, OUTPUT);
+  pinMode(in4Pin, OUTPUT);
+  if(high){
+    digitalWrite(in1Pin, HIGH);
+    digitalWrite(in2Pin, LOW);
+    digitalWrite(in3Pin, HIGH);
+    digitalWrite(in4Pin, LOW);
+  }
+  else{
+    digitalWrite(in1Pin, LOW);
+    digitalWrite(in2Pin, HIGH);
+    digitalWrite(in3Pin, LOW);
+    digitalWrite(in4Pin, HIGH);
+  }
+  return high;
+}
 
 void ProxyFataStanga(){
   // Start a new measurement:
@@ -54,8 +73,10 @@ void ProxyFataStanga(){
   int duration = pulseIn(FS_SenzorEcho, HIGH) / 58;
   delay(1000);
 
-  if(duration <= 10){
+  if(duration > 10){
     Serial.print("Senzor fata stanga: ");
     Serial.print(duration);
+    Serial.println(" cm");
+    Motor(true);
   }
 }
