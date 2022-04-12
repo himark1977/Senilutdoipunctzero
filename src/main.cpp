@@ -40,7 +40,7 @@ void setup() {
 }
 
 void loop() {
-  ProxyFataStanga();
+  ProxyFata();
   
 }
 
@@ -64,13 +64,13 @@ bool Motor(bool high){
   return high;
 }
 
-void ProxyFataStanga(){
+void ProxyFata(){
   // Start a new measurement:
-  digitalWrite(FS_Senzortrig, HIGH);
+  digitalWrite(F_Senzortrig, HIGH);
   delayMicroseconds(10);
-  digitalWrite(FS_Senzortrig, LOW);
+  digitalWrite(F_Senzortrig, LOW);
   // Read the result:
-  int duration = pulseIn(FS_SenzorEcho, HIGH) / 58;
+  int duration = pulseIn(F_SenzorEcho, HIGH) / 58;
   delay(1000);
 
   if(duration > 10){

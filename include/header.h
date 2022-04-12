@@ -1,3 +1,3 @@
 #pragma once
-void ProxyFataStanga();
+void ProxyFata();
 bool Motor(bool high);
