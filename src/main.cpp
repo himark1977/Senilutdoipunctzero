@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include <Senilut.h>
 #define GPSRxPin 2
 #define GPXTxPin 3
 #define in1Pin 7
@@ -39,20 +40,19 @@ void setup() {
 }
 
 void loop() {
-  
+  if(ProxyFataStanga().distance < 10) {
+    Serial.println("Fata stanga");
+    Serial.println(ProxyFataStanga().distance); 
+  }
 }
 
 
-
-void ProxyFataStanga() {
+void ProxyFataStanga(){
   // Start a new measurement:
   digitalWrite(FS_Senzortrig, HIGH);
   delayMicroseconds(10);
   digitalWrite(FS_Senzortrig, LOW);
-
   // Read the result:
-  int duration = pulseIn(FS_SenzorEcho, HIGH);
-  duration = duration / 58;
-
+  int distance = pulseIn(FS_SenzorEcho, HIGH) / 58;
   delay(1000);
 }
