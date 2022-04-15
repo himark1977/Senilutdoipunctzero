@@ -2,3 +2,4 @@
 void ProxyFront();
 void ProxyFrontR();
 void ProxyFrontL();
+void AutoDrive();

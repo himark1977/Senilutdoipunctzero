@@ -57,32 +57,35 @@ void loop() {
   void ProxyFrontR();
   void ProxyFrontL();
   
-  // TO DO
+  void AutoDrive(); 
+
+}
+
+void AutoDrive(){
+    // TO DO
   if(obstacleF == true){
     if(distanceFL<distanceFR){
-      // Turn Right
+      Serial.print("Going Right");
     } else{
-      // Turn Left
+      Serial.print("Going Left");
     }
   } 
 
   if(obstacleFL == true){
     if(distanceF<distanceFR){
-      // turn right
+      Serial.print("Going Right");
     } else {
-      // Go Forward
+      Serial.print("Going Straight");
     } 
   }
 
   if(obstacleFR == true){
     if(distanceF<distanceFL){
-      // turn left
+      Serial.print("Going Left");
     } else {
-      // Go Forward
+      Serial.print("Going Straight");
     } 
   }
-    
-
 }
 
 void ProxyFront(){
