@@ -58,15 +58,31 @@ void loop() {
   void ProxyFrontL();
   
   // TO DO
-   if(obstacleFL || obstacleFR){
-    // go straight
-   } else if(obstacleF || obstacleFR) {
-     // go to left
-   } else{
-     // go right
-   }
+  if(obstacleF == true){
+    if(distanceFL<distanceFR){
+      // Turn Right
+    } else{
+      // Turn Left
+    }
+  } 
+
+  if(obstacleFL == true){
+    if(distanceF<distanceFR){
+      // turn right
+    } else {
+      // Go Forward
+    } 
+  }
+
+  if(obstacleFR == true){
+    if(distanceF<distanceFL){
+      // turn left
+    } else {
+      // Go Forward
+    } 
+  }
     
-    
+
 }
 
 void ProxyFront(){
