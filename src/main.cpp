@@ -52,14 +52,20 @@ void setup() {
 }
 
 void loop() {
+
+  void ProxyFront();
+  void ProxyFrontR();
+  void ProxyFrontL();
   
-   if(obstacleFL || obstacleF){
-     // go to right
+  // TO DO
+   if(obstacleFL || obstacleFR){
+    // go straight
    } else if(obstacleF || obstacleFR) {
      // go to left
    } else{
-     // go straight
+     // go right
    }
+    
     
 }
 
