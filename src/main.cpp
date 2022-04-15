@@ -8,14 +8,18 @@
 #define in4Pin 4
 
 // Senzor proximitate fata stanga
-#define FS_Senzortrig 10
-#define FS_SenzorEcho 11
+#define FS_Sensortrig 10
+#define FS_SensorEcho 11
 //Senzor proximitate fata
-#define F_Senzortrig 12
-#define F_SenzorEcho 13
+#define F_Sensortrig 12
+#define F_SensorEcho 13
 //Senzor proximitate dreapta
-#define FD_Senzortrig 14
-#define FD_SenzorEcho 15
+#define FD_Sensortrig 14
+#define FD_SensorEcho 15
+
+int distanceFL;
+int distanceF;
+int distanceFR;
 
 void setup() {
   Serial.begin(9600);
@@ -25,58 +29,69 @@ void setup() {
   // Motor 2
   pinMode(in3Pin, OUTPUT);
   pinMode(in4Pin, OUTPUT);
-  // Senzor JPS
+  // GPS Sensor
   pinMode(GPXTxPin, INPUT);
   pinMode(GPSRxPin, INPUT);
-  // Senzor proximitate fata stanga
-  pinMode(FS_Senzortrig, OUTPUT);
-  pinMode(FS_SenzorEcho, INPUT);
-  // Senzor proximitate fata
-  pinMode(F_Senzortrig, OUTPUT);
-  pinMode(F_SenzorEcho, INPUT);
-  // Senzor proximitate dreapta
-  pinMode(FD_Senzortrig, OUTPUT);
-  pinMode(FD_SenzorEcho, INPUT);
-}
-
-void loop() {
-  ProxyFata();
-  
-}
-
-bool Motor(bool high){
+  // Proxy sensor front left
+  pinMode(FS_Sensortrig, OUTPUT);
+  pinMode(FS_SensorEcho, INPUT);
+  // Proxy sensor front
+  pinMode(F_Sensortrig, OUTPUT);
+  pinMode(F_SensorEcho, INPUT);
+  // Proxy sensor front right
+  pinMode(FD_Sensortrig, OUTPUT);
+  pinMode(FD_SensorEcho, INPUT);
+  // Initializate motor
   pinMode(in1Pin, OUTPUT);
   pinMode(in2Pin, OUTPUT);
   pinMode(in3Pin, OUTPUT);
   pinMode(in4Pin, OUTPUT);
-  if(high){
-    digitalWrite(in1Pin, HIGH);
-    digitalWrite(in2Pin, LOW);
-    digitalWrite(in3Pin, HIGH);
-    digitalWrite(in4Pin, LOW);
-  }
-  else{
-    digitalWrite(in1Pin, LOW);
-    digitalWrite(in2Pin, HIGH);
-    digitalWrite(in3Pin, LOW);
-    digitalWrite(in4Pin, HIGH);
-  }
-  return high;
 }
 
-void ProxyFata(){
-  // Start a new measurement:
-  digitalWrite(F_Senzortrig, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(F_Senzortrig, LOW);
-  // Read the result:
-  int duration = pulseIn(F_SenzorEcho, HIGH) / 58;
-  delay(1000);
+void loop() {
+  
+    if(distanceFL < 20) {
+      Serial.println("Obstacle detected on the left");
+      delay(1000);
 
-  if(duration > 10){
-    Serial.print("Senzor fata stanga: ");
-    Serial.print(duration);
-    Serial.println(" cm");
-    Motor(true);
-  }
+    } else if (distanceF<20){
+      Serial.println("Obstacle detected in front");
+      delay(1000);
+
+    } else if (distanceFR<20){
+      Serial.println("Obstacle detected on the right");
+      delay(1000);
+
+    }
+
+}
+
+void ProxyFront(){
+  // Start a new measurement:
+  digitalWrite(F_Sensortrig, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(F_Sensortrig, LOW);
+  // Read the result:
+ distanceF = pulseIn(F_SensorEcho, HIGH) / 58;
+  delay(1000);
+}
+
+void ProxyFrontL(){
+  // Start a new measurement:
+  digitalWrite(F_Sensortrig, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(F_Sensortrig, LOW);
+  // Read the result:
+ distanceFL = pulseIn(F_SensorEcho, HIGH) / 58;
+  delay(1000);
+}
+
+void ProxyFrontR(){
+  // Start a new measurement:
+  digitalWrite(F_Sensortrig, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(F_Sensortrig, LOW);
+  // Read the result:
+ distanceFR = pulseIn(F_SensorEcho, HIGH) / 58;
+  delay(1000);
 }
