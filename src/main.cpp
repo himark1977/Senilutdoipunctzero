@@ -53,9 +53,9 @@ void setup() {
 
 void loop() {
   
-   if(obstacleFL && obstacleF){
+   if(obstacleFL || obstacleF){
      // go to right
-   } else if(obstacleF && obstacleFR) {
+   } else if(obstacleF || obstacleFR) {
      // go to left
    } else{
      // go straight
