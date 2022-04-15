@@ -20,6 +20,9 @@
 int distanceFL;
 int distanceF;
 int distanceFR;
+bool obstacleFL = false;
+bool obstacleF= false;
+bool obstacleFR= false;
 
 void setup() {
   Serial.begin(9600);
@@ -50,20 +53,14 @@ void setup() {
 
 void loop() {
   
-    if(distanceFL < 20) {
-      Serial.println("Obstacle detected on the left");
-      delay(1000);
-
-    } else if (distanceF<20){
-      Serial.println("Obstacle detected in front");
-      delay(1000);
-
-    } else if (distanceFR<20){
-      Serial.println("Obstacle detected on the right");
-      delay(1000);
-
-    }
-
+   if(obstacleFL && obstacleF){
+     // go to right
+   } else if(obstacleF && obstacleFR) {
+     // go to left
+   } else{
+     // go straight
+   }
+    
 }
 
 void ProxyFront(){
@@ -74,6 +71,11 @@ void ProxyFront(){
   // Read the result:
  distanceF = pulseIn(F_SensorEcho, HIGH) / 58;
   delay(1000);
+  if(distanceF< 20) {
+      Serial.println("Obstacle detected on front");
+      delay(1000);
+      obstacleF=true;
+  }
 }
 
 void ProxyFrontL(){
@@ -84,6 +86,11 @@ void ProxyFrontL(){
   // Read the result:
  distanceFL = pulseIn(F_SensorEcho, HIGH) / 58;
   delay(1000);
+  if(distanceFL < 20) {
+      Serial.println("Obstacle detected on the left");
+      delay(1000);
+      obstacleFL=true;
+  }
 }
 
 void ProxyFrontR(){
@@ -94,4 +101,9 @@ void ProxyFrontR(){
   // Read the result:
  distanceFR = pulseIn(F_SensorEcho, HIGH) / 58;
   delay(1000);
+  if(distanceFR < 20) {
+      Serial.println("Obstacle detected on the right");
+      delay(1000);
+      obstacleFR=true;
+  }
 }
