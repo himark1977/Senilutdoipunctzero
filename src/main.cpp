@@ -7,13 +7,13 @@
 #define in3Pin 5
 #define in4Pin 4
 
-// Senzor proximitate fata stanga
+// Proxy sensor front left
 #define FS_Sensortrig 10
 #define FS_SensorEcho 11
-//Senzor proximitate fata
+//Proxy sensor front left
 #define F_Sensortrig 12
 #define F_SensorEcho 13
-//Senzor proximitate dreapta
+// Proxy sensor front right
 #define FD_Sensortrig 14
 #define FD_SensorEcho 15
 
