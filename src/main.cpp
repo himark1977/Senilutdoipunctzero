@@ -76,6 +76,8 @@ void AutoDrive(){
       Serial.print("Going Right");
     } else {
       Serial.print("Going Straight");
+      digitalWrite(in1Pin, HIGH);
+      digitalWrite(in3Pin, HIGH);
     } 
   }
 
@@ -84,6 +86,8 @@ void AutoDrive(){
       Serial.print("Going Left");
     } else {
       Serial.print("Going Straight");
+      digitalWrite(in1Pin, HIGH);
+      digitalWrite(in3Pin, HIGH);
     } 
   }
 }
