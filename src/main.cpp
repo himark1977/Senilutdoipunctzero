@@ -1,5 +1,4 @@
 #include <Arduino.h>
-#include <header.h>
 #define GPSRxPin 2
 #define GPXTxPin 3
 #define in1Pin 7
@@ -53,15 +52,52 @@ void setup() {
 
 void loop() {
 
-  void ProxyFront();
-  void ProxyFrontR();
-  void ProxyFrontL();
-  
-  void AutoDrive(); 
+  // Proxy F
+  // Start a new measurement:
+  digitalWrite(F_Sensortrig, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(F_Sensortrig, LOW);
+  // Read the result:
+ distanceF = pulseIn(F_SensorEcho, HIGH) / 58;
+  delay(1000);
+  if(distanceF< 20) {
+      Serial.println("Obstacle detected on front");
+      delay(1000);
+      obstacleF=true;
+  }
 
-}
 
-void AutoDrive(){
+//ProxyFront
+  // Start a new measurement:
+  digitalWrite(F_Sensortrig, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(F_Sensortrig, LOW);
+  // Read the result:
+ distanceFL = pulseIn(F_SensorEcho, HIGH) / 58;
+  delay(1000);
+  if(distanceFL < 20) {
+      Serial.println("Obstacle detected on the left");
+      delay(1000);
+      obstacleFL=true;
+  }
+
+
+//ProxyFrontR
+  // Start a new measurement:
+  digitalWrite(F_Sensortrig, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(F_Sensortrig, LOW);
+  // Read the result:
+ distanceFR = pulseIn(F_SensorEcho, HIGH) / 58;
+  delay(1000);
+  if(distanceFR < 20) {
+      Serial.println("Obstacle detected on the right");
+      delay(1000);
+      obstacleFR=true;
+  }
+
+
+//AutoDrive
     // TO DO
   if(obstacleF == true){
     if(distanceFL<distanceFR){
@@ -90,49 +126,6 @@ void AutoDrive(){
       digitalWrite(in3Pin, HIGH);
     } 
   }
-}
 
-void ProxyFront(){
-  // Start a new measurement:
-  digitalWrite(F_Sensortrig, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(F_Sensortrig, LOW);
-  // Read the result:
- distanceF = pulseIn(F_SensorEcho, HIGH) / 58;
-  delay(1000);
-  if(distanceF< 20) {
-      Serial.println("Obstacle detected on front");
-      delay(1000);
-      obstacleF=true;
-  }
-}
 
-void ProxyFrontL(){
-  // Start a new measurement:
-  digitalWrite(F_Sensortrig, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(F_Sensortrig, LOW);
-  // Read the result:
- distanceFL = pulseIn(F_SensorEcho, HIGH) / 58;
-  delay(1000);
-  if(distanceFL < 20) {
-      Serial.println("Obstacle detected on the left");
-      delay(1000);
-      obstacleFL=true;
-  }
-}
-
-void ProxyFrontR(){
-  // Start a new measurement:
-  digitalWrite(F_Sensortrig, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(F_Sensortrig, LOW);
-  // Read the result:
- distanceFR = pulseIn(F_SensorEcho, HIGH) / 58;
-  delay(1000);
-  if(distanceFR < 20) {
-      Serial.println("Obstacle detected on the right");
-      delay(1000);
-      obstacleFR=true;
-  }
 }
