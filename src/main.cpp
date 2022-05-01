@@ -1,6 +1,5 @@
 #include <Arduino.h>
-#define GPSRxPin 2
-#define GPXTxPin 3
+
 #define in1Pin 7
 #define in2Pin 6
 #define in3Pin 5
@@ -31,9 +30,6 @@ void setup() {
   // Motor 2
   pinMode(in3Pin, OUTPUT);
   pinMode(in4Pin, OUTPUT);
-  // GPS Sensor
-  pinMode(GPXTxPin, INPUT);
-  pinMode(GPSRxPin, INPUT);
   // Proxy sensor front left
   pinMode(FS_Sensortrig, OUTPUT);
   pinMode(FS_SensorEcho, INPUT);
@@ -43,11 +39,6 @@ void setup() {
   // Proxy sensor front right
   pinMode(FD_Sensortrig, OUTPUT);
   pinMode(FD_SensorEcho, INPUT);
-  // Initializate motor
-  pinMode(in1Pin, OUTPUT);
-  pinMode(in2Pin, OUTPUT);
-  pinMode(in3Pin, OUTPUT);
-  pinMode(in4Pin, OUTPUT);
 }
 
 void loop() {
