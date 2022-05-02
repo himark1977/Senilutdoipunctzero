@@ -43,6 +43,17 @@ void setup() {
 
 void loop() {
 
+    if(obstacleF&&obstacleFL&&obstacleFR == false) {
+      // Move Forward
+      digitalWrite(in1Pin, HIGH);
+      digitalWrite(in3Pin, HIGH);
+    } else (obstacleF&&obstacleFL&&obstacleFR == true) {
+      digitalWrite(in1Pin, LOW);
+      digitalWrite(in2Pin, LOW);
+      digitalWrite(in3Pin, LOW);
+      digitalWrite(in4Pin, LOW);
+    }
+
   // Proxy F
   // Start a new measurement:
   digitalWrite(F_Sensortrig, HIGH);
@@ -93,14 +104,17 @@ void loop() {
   if(obstacleF == true){
     if(distanceFL<distanceFR){
       Serial.print("Going Right");
+      digitalWrite(in1Pin, HIGH);
     } else{
       Serial.print("Going Left");
+      digitalWrite(in3Pin, HIGH);
     }
   } 
 
   if(obstacleFL == true){
     if(distanceF<distanceFR){
       Serial.print("Going Right");
+      digitalWrite(in1Pin, HIGH);
     } else {
       Serial.print("Going Straight");
       digitalWrite(in1Pin, HIGH);
@@ -111,6 +125,7 @@ void loop() {
   if(obstacleFR == true){
     if(distanceF<distanceFL){
       Serial.print("Going Left");
+      digitalWrite(in3Pin, HIGH);
     } else {
       Serial.print("Going Straight");
       digitalWrite(in1Pin, HIGH);
