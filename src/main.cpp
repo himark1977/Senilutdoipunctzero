@@ -47,7 +47,7 @@ void loop() {
       // Move Forward
       digitalWrite(in1Pin, HIGH);
       digitalWrite(in3Pin, HIGH);
-    } else (obstacleF&&obstacleFL&&obstacleFR == true) {
+    } else if(obstacleF&&obstacleFL&&obstacleFR == true) {
       digitalWrite(in1Pin, LOW);
       digitalWrite(in2Pin, LOW);
       digitalWrite(in3Pin, LOW);
