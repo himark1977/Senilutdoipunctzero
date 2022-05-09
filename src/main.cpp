@@ -20,7 +20,7 @@ bool obstacle;
 
 
 void proxy() {
-//ProxyFront
+  //ProxyFront
   // Start a new measurement:
   digitalWrite(F_Sensortrig, HIGH);
   delayMicroseconds(10);
@@ -35,7 +35,7 @@ void proxy() {
   } else {
     obstacle = false;
      digitalWrite(in1Pin, HIGH);
-digitalWrite(in3Pin, HIGH);
+    digitalWrite(in3Pin, HIGH);
   }
 
 
@@ -47,7 +47,7 @@ digitalWrite(in3Pin, HIGH);
  distanceFL = pulseIn(FL_SensorEcho, HIGH) / 58;
   delay(1000);
 
-// Start a new measurement:
+  // Start a new measurement:
   digitalWrite(FR_Sensortrig, HIGH);
   delayMicroseconds(10);
   digitalWrite(FR_Sensortrig, LOW);
@@ -65,7 +65,7 @@ void autodrive() {
       digitalWrite(in1Pin, LOW);
       digitalWrite(in3Pin, HIGH);
       delay(10000);
-    } else if(distanceFL>distanceFR){
+    } else{
       Serial.print("Going Left");
       digitalWrite(in1Pin, HIGH);
       digitalWrite(in3Pin, LOW);
@@ -73,7 +73,6 @@ void autodrive() {
     }
   } 
 }
-
 
 void setup() {
   Serial.begin(9600);
@@ -87,11 +86,16 @@ void setup() {
   // Proxy sensor front
   pinMode(F_Sensortrig, OUTPUT);
   pinMode(F_SensorEcho, INPUT);
+   // Proxy sensor front
+  pinMode(FL_Sensortrig, OUTPUT);
+  pinMode(FL_SensorEcho, INPUT);
+   // Proxy sensor front
+  pinMode(FR_Sensortrig, OUTPUT);
+  pinMode(FR_SensorEcho, INPUT);
  
 }
 
 void loop() {
-Serial.println(obstacle);
 proxy();
 autodrive();
 }
