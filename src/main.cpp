@@ -80,7 +80,7 @@ void autodrive() {
       digitalWrite(in1Pin, LOW);
       digitalWrite(in3Pin, HIGH);
       delay(10000);
-    } else if(distanceFR<distanceFL){
+    } else if(distanceFL>distanceFR){
       Serial.print("Going Left");
       digitalWrite(in1Pin, HIGH);
       digitalWrite(in3Pin, LOW);
