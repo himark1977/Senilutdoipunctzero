@@ -19,21 +19,6 @@ int distanceFR;
 bool obstacle;
 
 
-void setup() {
-  Serial.begin(9600);
-  // Motor 1
-  pinMode(in1Pin, OUTPUT);
-  pinMode(in2Pin, OUTPUT);
-  // Motor 2
-  pinMode(in3Pin, OUTPUT);
-  pinMode(in4Pin, OUTPUT);
-
-  // Proxy sensor front
-  pinMode(F_Sensortrig, OUTPUT);
-  pinMode(F_SensorEcho, INPUT);
- 
-}
-
 void proxy() {
 //ProxyFront
   // Start a new measurement:
@@ -87,6 +72,22 @@ void autodrive() {
       delay(10000);
     }
   } 
+}
+
+
+void setup() {
+  Serial.begin(9600);
+  // Motor 1
+  pinMode(in1Pin, OUTPUT);
+  pinMode(in2Pin, OUTPUT);
+  // Motor 2
+  pinMode(in3Pin, OUTPUT);
+  pinMode(in4Pin, OUTPUT);
+
+  // Proxy sensor front
+  pinMode(F_Sensortrig, OUTPUT);
+  pinMode(F_SensorEcho, INPUT);
+ 
 }
 
 void loop() {
