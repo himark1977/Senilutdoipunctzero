@@ -139,7 +139,7 @@ void setup() {
   pinMode(in2Pin, OUTPUT);
   pinMode(in3Pin, OUTPUT);
   pinMode(in4Pin, OUTPUT);
-  Serial.println("Hello World! Setup")
+  Serial.println("Hello World! Setup");
 }
 
 
