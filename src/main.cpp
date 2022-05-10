@@ -1,3 +1,4 @@
+#include <Arduino.h>
 #define in1Pin 7
 #define in2Pin 6
 #define in3Pin 5
@@ -64,12 +65,12 @@ void autodrive() {
       Serial.print("Going Right");
       digitalWrite(in1Pin, LOW);
       digitalWrite(in3Pin, HIGH);
-      delay(10000);
+      delay(1000);
     } else{
       Serial.print("Going Left");
       digitalWrite(in1Pin, HIGH);
       digitalWrite(in3Pin, LOW);
-      delay(10000);
+      delay(1000);
     }
   } 
 }
@@ -96,6 +97,9 @@ void setup() {
 }
 
 void loop() {
+  Serial.print(distanceF);
+  Serial.print(distanceFL);
+  Serial.print(distanceFR);
 proxy();
 autodrive();
 }
