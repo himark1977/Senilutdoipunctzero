@@ -28,10 +28,10 @@ void proxy() {
   digitalWrite(F_Sensortrig, LOW);
   // Read the result:
  distanceF = pulseIn(F_SensorEcho, HIGH) / 58;
-  delay(1000);
-  if(distanceF < 20) {
+  delayMicroseconds(10);
+  if(distanceF < 30) {
     Serial.println(" obstacle detected ");
-      delay(1000);
+      delay(1);
       obstacle=true;
   } else {
     obstacle = false;
@@ -46,7 +46,7 @@ void proxy() {
   digitalWrite(FL_Sensortrig, LOW);
   // Read the result:
  distanceFL = pulseIn(FL_SensorEcho, HIGH) / 58;
-  delay(1000);
+  delayMicroseconds(10);
 
   // Start a new measurement:
   digitalWrite(FR_Sensortrig, HIGH);
@@ -54,7 +54,7 @@ void proxy() {
   digitalWrite(FR_Sensortrig, LOW);
   // Read the result:
  distanceFR = pulseIn(FR_SensorEcho, HIGH) / 58;
-  delay(1000);
+  delayMicroseconds(10);
 }
 
 void autodrive() {
@@ -63,14 +63,14 @@ void autodrive() {
   if(obstacle == true){
     if(distanceFL<distanceFR){
       Serial.print("Going Right");
-      digitalWrite(in1Pin, LOW);
-      digitalWrite(in3Pin, HIGH);
-      delay(1000);
-    } else{
-      Serial.print("Going Left");
       digitalWrite(in1Pin, HIGH);
       digitalWrite(in3Pin, LOW);
-      delay(1000);
+  delayMicroseconds(10);
+    } else{
+      Serial.print("Going Left");
+      digitalWrite(in1Pin, LOW);
+      digitalWrite(in3Pin, HIGH);
+  delayMicroseconds(10);
     }
   } 
 }
@@ -97,9 +97,6 @@ void setup() {
 }
 
 void loop() {
-  Serial.print(distanceF);
-  Serial.print(distanceFL);
-  Serial.print(distanceFR);
 proxy();
 autodrive();
 }
